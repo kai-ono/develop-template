@@ -71,8 +71,8 @@ gulp.task('eslint', function() {
 });
 
 gulp.task('jsdoc', function(cb) {
-  var jsdoc = require("gulp-jsdoc3");
-  var config = require('./jsdocConfig.json');
+  const jsdoc = require("gulp-jsdoc3");
+  const config = require('./jsdocConfig.json');
 
   gulp.src(['jsdoc.md', 'src/js/**/*.js'], {
     read: false
