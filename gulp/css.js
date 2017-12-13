@@ -26,9 +26,9 @@ module.exports = function(gulp) {
       .pipe(sourcemaps.init())
       .pipe(postcss(plugins))
       .pipe(rename({
-          extname: '.css'
+        extname: '.css'
       }))
       .pipe(sourcemaps.write('.'))
       .pipe(gulp.dest('./dest/css'));
   });
-}
+};

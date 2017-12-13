@@ -10,10 +10,9 @@ module.exports = function(gulp) {
       .pipe(eslint.failAfterError());
   });
 
-  gulp.task('babel', ['eslint'], function() {
+  gulp.task('js', [ 'eslint' ], function() {
     const del = require('del');
     const rename = require('gulp-rename');
-    const babelify = require('babelify');
     const browserify = require('browserify');
     const source = require('vinyl-source-stream');
     const buffer = require('vinyl-buffer');
@@ -22,17 +21,17 @@ module.exports = function(gulp) {
     del('dest/js/*');
 
     browserify({
-        entries: ['src/js/script.js'],
-        transform: [['babelify', {
-          comments: false
-        }]]
-      })
-      .bundle()
-      .pipe(source('script.js'))
-      .pipe(buffer())
-      .pipe(gulp.dest('dest/js/'))
-      .pipe(rename({suffix: '.min'}))
-      .pipe(uglify())
-      .pipe(gulp.dest('dest/js/'));
+      entries: [ 'src/js/script.js' ],
+      transform: [ [ 'babelify', {
+        comments: false
+      } ] ]
+    })
+    .bundle()
+    .pipe(source('script.js'))
+    .pipe(buffer())
+    .pipe(gulp.dest('dest/js/'))
+    .pipe(rename({suffix: '.min'}))
+    .pipe(uglify())
+    .pipe(gulp.dest('dest/js/'));
   });
-}
+};
