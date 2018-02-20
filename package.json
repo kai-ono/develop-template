@@ -4,7 +4,16 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "gulp": "gulp",
+    "all": "gulp all",
+    "html": "gulp html",
+    "css": "gulp css",
+    "js": "gulp js",
+    "img": "gulp img",
+    "jsdoc": "gulp jsdoc",
+    "eslint": "gulp eslint",
+    "server": "gulp server"
   },
   "repository": {
     "type": "git",
