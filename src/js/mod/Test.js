@@ -20,7 +20,7 @@ class Test {
    * @param	{Number} blurY 垂直方向へのぼかし量
    */
   add(target, blurX, blurY) {
-    var textnode = document.createTextNode("Testクラスaddメソッド")
+    const textnode = document.createTextNode("Testクラスaddメソッド")
     document.body.appendChild(textnode);
   }
 
@@ -30,7 +30,7 @@ class Test {
    * @param	{Object} target 対象のオブジェクト
    */
   remove(target) {
-    var textnode = document.createTextNode("Testクラスremoveメソッド")
+    const textnode = document.createTextNode("Testクラスremoveメソッド")
     document.body.appendChild(textnode);
   }
 };

@@ -21,8 +21,8 @@ class Sample {
    * @returns {Object} 読み込んだオブジェクトを返す
    */
   load(url, params) {
-    var obj = {};
-    var textnode = document.createTextNode("Sampleクラスloadメソッド")
+    const textnode = document.createTextNode("Sampleクラスloadメソッド")
+    let obj = {};
     document.body.appendChild(textnode);
     return obj;
   }

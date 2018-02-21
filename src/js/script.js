@@ -1,16 +1,16 @@
 'use strict';
 
 // polyfill
-var raf = require('raf');
+const raf = require('raf');
 require('es5-shim');
 require('classlist-polyfill');
 
 // require
 require('./mod/Global');
-var sample = require('./mod/Sample');
-var test = require('./mod/Test');
-var anim = require('./mod/AnimationMod');
-var cnt = require('./mod/Counter');
+const sample = require('./mod/Sample');
+const test = require('./mod/Test');
+const anim = require('./mod/AnimationMod');
+const cnt = require('./mod/Counter');
 
 /**
  * Hoge用のクラスです。
@@ -50,7 +50,7 @@ class Fuga {
    * 改行要素を作成して返します
    */
   insertBr() {
-    var node = document.createElement('br');
+    const node = document.createElement('br');
     document.body.appendChild(node);
   }
 
@@ -63,9 +63,9 @@ class Fuga {
    * _test.public();
    */
   public() {
-    var _this = this;
-    var n = 0;
-    var textnode = document.createTextNode('public method');
+    const _this = this;
+    const textnode = document.createTextNode('public method');
+    let n = 0;
     document.body.appendChild(textnode);
 
     raf(function tick() {

@@ -15,9 +15,9 @@ module.exports = {
    * @param {Number}  blurY 垂直方向へのぼかし量
    */
   add: function add(target, blurX, blurY) {
-    var textnode = document.createTextNode("Module、addメソッド")
-    var node = document.createElement("br");
-    var textnode2 = document.createTextNode("Module、addメソッドからの呼び出し→")
+    const textnode = document.createTextNode("Module、addメソッド");
+    const node = document.createElement("br");
+    const textnode2 = document.createTextNode("Module、addメソッドからの呼び出し→");
 
     document.body.appendChild(textnode);
     document.body.appendChild(node);
@@ -33,7 +33,7 @@ module.exports = {
    * @param {Object}  target  対象のオブジェクト
    */
   remove: function remove(target) {
-    var textnode = document.createTextNode("Module、removeメソッド")
+    const textnode = document.createTextNode("Module、removeメソッド")
     document.body.appendChild(textnode);
   }
 };

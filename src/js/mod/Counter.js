@@ -18,7 +18,7 @@ class StringCounter {
       this.maxLength = maxLength || null;
       this.count();
       this.setEvents();
-      var textnode = document.createTextNode(el + ' && ' + maxLength)
+      const textnode = document.createTextNode(el + ' && ' + maxLength)
       document.body.appendChild(textnode)
     } else {
       throw new Error('el is Required'); // elが渡されなかったらエラー
