@@ -20,6 +20,7 @@
 ```bash
 # gulp all
   # 次のタスクを実行（順番は保証されない） → 'html', 'ejs', 'img', 'css', 'js', 'font'
+$ npm run all_both
 $ npm run all_pc
 $ npm run all_sp
 
