@@ -1,0 +1,28 @@
+/*------------------------------------------
+  Reset
+------------------------------------------*/
+* {
+  margin: 0;
+  padding: 0;
+}
+body {
+  min-width: 320px;
+  font-size: 13px;
+  line-height: 1.4;
+  font-family: "ヒラギノ角ゴ Pro W3", "Yu Gothic", "游ゴシック", YuGothic, "游ゴシック体", Roboto, 'Droid Sans', sans-serif;
+  font-weight: 100;
+  -webkit-font-smoothing: antialiased;
+  @media screen and (max-width: $break-pt){
+    font-size: 2vmax;
+  }
+}
+a:link, a:visited {
+  color: #000;
+  text-decoration: none;
+}
+a:active, a:hover {
+  text-decoration: underline;
+}
+img {
+  vertical-align: top;
+}

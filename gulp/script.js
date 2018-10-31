@@ -1,37 +1,49 @@
-module.exports = function(gulp) {
-  gulp.task('eslint', function() {
-    const eslint = require('gulp-eslint');
-    const plumber = require('gulp-plumber');
+module.exports = function (gulp) {
+  const config = require('./config/config')
+
+  gulp.task('eslint', function () {
+    const eslint = require('gulp-eslint')
+    const plumber = require('gulp-plumber')
+
+    gulp.src(config.srcPc + 'js/**/*.js')
+      .pipe(plumber())
+      .pipe(eslint({
+        useEslintrc: true
+      }))
+      .pipe(eslint.format())
+      .pipe(eslint.failAfterError())
+  })
+
+  gulp.task('cleanjs', function () {
+    const del = require('del')
+    return del(config.destPc + 'js/*', { force: true })
+  })
+
+  gulp.task('js', [ 'cleanjs', 'eslint' ], function () {
+    const babel = require('gulp-babel')
+    const rename = require('gulp-rename')
+    const uglify = require('gulp-uglify')
 
     gulp.src('src/js/*.js')
-      .pipe(plumber())
-      .pipe(eslint({useEslintrc: true}))
-      .pipe(eslint.format())
-      .pipe(eslint.failAfterError());
-  });
+      .pipe(babel({
+        'presets': [ 'es2015' ],
+        'plugins': [ 'transform-es2015-modules-umd' ],
+        'comments': false
+      }))
+      .pipe(gulp.dest('dest/js/'))
+      .pipe(rename({
+        suffix: '.min'
+      }))
+      .pipe(uglify())
+      .pipe(gulp.dest('dest/js/'))
+  })
 
-  gulp.task('js', [ 'eslint' ], function() {
-    const del = require('del');
-    const rename = require('gulp-rename');
-    const browserify = require('browserify');
-    const source = require('vinyl-source-stream');
-    const buffer = require('vinyl-buffer');
-    const uglify = require('gulp-uglify');
+  gulp.task('lib', function () {
+    const del = require('del')
 
-    del('dest/js/*');
+    del(config.dest + 'lib/**/*', { force: true })
 
-    browserify({
-      entries: [ 'src/js/script.js' ],
-      transform: [ [ 'babelify', {
-        comments: false
-      } ] ]
-    })
-    .bundle()
-    .pipe(source('script.js'))
-    .pipe(buffer())
-    .pipe(gulp.dest('dest/js/'))
-    .pipe(rename({suffix: '.min'}))
-    .pipe(uglify())
-    .pipe(gulp.dest('dest/js/'));
-  });
-};
+    return gulp.src(config.srcPc + 'lib/**/*')
+      .pipe(gulp.dest(config.destPc + 'lib/'))
+  })
+}
