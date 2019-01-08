@@ -7,3 +7,7 @@ node_modules/
 
 # Optional npm cache directory
 .npm
+
+# Others
+.DS_Store
+Thumbs.db

@@ -1,6 +1,7 @@
 # develop-template
 
 ## 概要
+* CSS設計はSMACCSを採用
 * srcのファイルをdestにコンパイル
 * htmlはejsで管理
   * ルート直下のincludeフォルダに共通パーツを格納
@@ -18,70 +19,45 @@
 
 ## コマンド
 ```bash
-# gulp all
-  # 次のタスクを実行（順番は保証されない） → 'html', 'ejs', 'img', 'css', 'js', 'font'
-$ npm run all_both
-$ npm run all_pc
-$ npm run all_sp
+# 全ビルド
+npm run all_both
 
-# gulp html
-  # src配下のhtmlをdest配下にコピーする
-$ npm run html_pc
-$ npm run html_sp
+# PC、SPそれぞれで全ビルド
+npm run all_[pc/sp]
 
-# gulp ejs
-  # src配下のejsをhtmlにコンパイルしてdest配下に出力する
-$ npm run ejs_pc
-$ npm run ejs_sp
+# src内のhtmlをdestにコピー
+npm run html_[pc/sp]
 
-# gulp img
-  # src/img配下の画像をdest/img配下にコピーする
-$ npm run img_pc
-$ npm run img_sp
+# src内のejsをdestにビルド
+npm run ejs_[pc/sp]
 
-# gulp css
-  # src/css配下のscssをコンパイルしてdest/css配下に出力する
-$ npm run css_pc
-$ npm run css_sp
+# src/[pc or sp]/img内のファイルをdestにコピー
+npm run img_[pc/sp]
 
-# gulp js
-  # src/js配下のjsをUMD形式のes2015にトランスパイルしてdest/js配下に出力する
-$ npm run js_pc
-$ npm run js_sp
+# src/[pc or sp]/css内のファイルをdestにビルド
+npm run css_[pc/sp]
 
-# gulp lib
-  # src/lib配下のファイルやフォルダ（プラグインやjqueryなど）をdest/lib配下にコピーする
-  # ※ browserifyを使っていないのでnpmモジュールとしては読み込めない
-  # ※ HTTP/2サーバーの場合、別ファイルの方が表示速度が早くなるので結合はしていない
-  # browserifyを使うか否かのビルド方式に関してはissue#1参照
-$ npm run lib_pc
-$ npm run lib_sp
+# src/[pc or sp]/js内のファイルをdestにビルド
+npm run js_[pc/sp]
 
-# gulp font
-  # src/font配下のフォントファイルをdest/font配下にコピーする
-$ npm run font_pc
-$ npm run font_sp
+# src/[pc or sp]/lib内のファイルをdestにコピー
+npm run lib_[pc/sp]
 
-# gulp server
-  # ローカルサーバを立ち上げる
-$ npm run server
+# src/[pc or sp]/font内のファイルをdestにコピー
+npm run font_[pc/sp]
 
-# gulp watch
-  # html、ejs、scss、jsを監視して、変更があれば次のタスクをそれぞれ実行する → 'html', 'ejs', 'css', 'js'
-$ npm run watch_pc
-$ npm run watch_sp
+# src/[pc or sp]内のhtml、ejs、css、jsファイルを監視して変更があればdestにビルド、またはコピー
+npm run watch_[pc/sp]
 
-# gulp
-  # watchとserverを実行する
-$ npm run start_pc
-$ npm run start_sp
+# src/[pc or sp]/js内のファイルに対してlintを実行
+npm run lint_[pc/sp]
 
-# gulp eslint
-  # src/js配下のjsファイルのlintを行う
-$ npm run lint_pc
-$ npm run lint_sp
+# src/[pc or sp]内のhtml、ejs、css、jsファイルを監視＆ローカルサーバを起動する
+npm run start_[pc/sp]
 
-# standard --fix
-  # JS自動整形 https://www.npmjs.com/package/standard
-$ npm run fix
+# destをルートとするローカルサーバを起動する
+npm run server
+
+# 全てのJSファイルに対して整形を実行する
+npm run fix
 ```

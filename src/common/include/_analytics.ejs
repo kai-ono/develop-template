@@ -1,0 +1,14 @@
+<%
+  var tagMng = (typeof tagMng !== 'undefined') ? tagMng : {} ;
+  tagMng.head = (typeof tagMng.head !== 'undefined') ? tagMng.head : false ;
+  tagMng.body = (typeof tagMng.body !== 'undefined') ? tagMng.body : false ;
+  var ga = (typeof ga !== 'undefined') ? ga : false ;
+%>
+
+<% if (tagMng.head) { %>
+
+<% } %>
+
+<% if (ga) { %>
+
+<% } %>

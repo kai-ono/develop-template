@@ -3,7 +3,8 @@ module.exports = function (gulp) {
 
   gulp.task('clean_html', function () {
     const del = require('del')
-    return del(config.dest + '**/*.html', { force: true })
+    const cleanDest = (config.isSp) ? config.dest + '**/*.html' : [config.dest + '**/*.html', '!' + config.destSp + '**/*.html']
+    return del(cleanDest, { force: true })
   })
 
   gulp.task('html', ['clean_html'], function () {

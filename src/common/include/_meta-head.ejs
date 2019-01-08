@@ -1,0 +1,30 @@
+<%
+  var resultTitle = (typeof title !== 'undefined') ? title + ' - ' : '' ;
+  var resultCss = (typeof css !== 'undefined') ? '<link rel="stylesheet" type="text/css" href="' + css + '">' : '' ;
+  var resultJs = (typeof js !== 'undefined') ? '<script type="text/javascript" src="' + js + '"></script>' : '' ;
+  var siteUrl = "https://example.com/";
+  var siteTitle = "Site Title";
+  var keywords = "keywords, sample, test";
+  var description = "This site is example.";
+  var ogImg = siteUrl + "img/ogp.jpg";
+%>
+<%- include('_analytics', {tagMng: { head: true }}); %>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title><%= resultTitle %><%= siteTitle %></title>
+<meta name="keywords" content="<%= keywords %>">
+<meta name="description" content="<%= description %>">
+<meta property="og:title" content="<%= siteTitle %>">
+<meta property="og:description" content="<%= description %>">
+<meta property="og:type" content="website">
+<meta property="og:url" content="<%= siteUrl %>">
+<meta property="og:image" content="<%= ogImg %>">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="<%= siteTitle %>">
+<meta name="twitter:description" content="<%= description %>">
+<meta name="twitter:image" content="<%= ogImg %>">
+<link rel="shortcut icon" href="/img/favicon.ico">
+<%- resultCss %>
+<script type="text/javascript" src="/js/ua-switch.js"></script>
+<%- resultJs %>
+<%- include('_analytics', {ga: true}); %>

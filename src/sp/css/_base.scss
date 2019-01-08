@@ -1,0 +1,82 @@
+/*------------------------------------------
+  Variables
+------------------------------------------*/
+$break-pt: 480px;
+
+/*------------------------------------------
+  Mixins
+------------------------------------------*/
+@define-mixin icon $network, $color: blue {
+  .icon.is-$(network) {
+      color: $color;
+      @mixin-content;
+  }
+  .icon.is-$(network):hover {
+      color: white;
+      background: $color;
+  }
+}
+
+/*------------------------------------------
+  Josefin Sans
+------------------------------------------*/
+@font-face {
+  font-family: 'JosefinSans';
+  src: url(../font/Josefin_Sans/JosefinSans-Thin.ttf);
+  font-weight: 100;
+}
+@font-face {
+  font-family: 'JosefinSans';
+  src: url(../font/Josefin_Sans/JosefinSans-Light.ttf);
+  font-weight: 300;
+}
+@font-face {
+  font-family: 'JosefinSans';
+  src: url(../font/Josefin_Sans/JosefinSans-Regular.ttf);
+  font-weight: normal;
+}
+@font-face {
+  font-family: 'JosefinSans';
+  src: url(../font/Josefin_Sans/JosefinSans-Bold.ttf);
+  font-weight: bold;
+}
+
+/*------------------------------------------
+  Reset
+------------------------------------------*/
+* {
+  margin: 0;
+  padding: 0;
+}
+html, body {
+  height: 100%;
+}
+html {
+  font-size: 62.5%;
+}
+body {
+  min-width: 320px;
+  font-size: 1.3rem;
+  line-height: 1.4;
+  font-family: "ヒラギノ角ゴ Pro W3", "Yu Gothic", "游ゴシック", YuGothic, "游ゴシック体", Roboto, 'Droid Sans', sans-serif;
+  font-weight: normal;
+  -webkit-font-smoothing: antialiased;
+  @media screen and (max-width: $break-pt){
+    font-size: 2vmax;
+  }
+}
+a:link, a:visited {
+  text-decoration: underline;
+}
+a:active, a:hover {
+  text-decoration: none;
+}
+img {
+  vertical-align: top;
+}
+@mixin icon twitter {
+  background: url(twt.png);
+}
+@mixin icon youtube, red {
+  background: url(youtube.png);
+}

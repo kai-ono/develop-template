@@ -1,16 +1,24 @@
 module.exports = function (gulp) {
   const config = require('./config/config')
 
-  gulp.task('css', function () {
+  gulp.task('clean_css', function () {
     const del = require('del')
+    return del(config.dest + 'css/*', { force: true })
+  })
+
+  gulp.task('css', ['clean_css'], function () {
     const rename = require('gulp-rename')
     const postcss = require('gulp-postcss')
+    const cssFor = require('postcss-for')
+    const cssImport = require('postcss-partial-import')
+    const cssVars = require('postcss-simple-vars')
+    const cssNested = require('postcss-nested')
+    const cssMixins = require('postcss-mixins')
+    const autoprefixer = require('autoprefixer')
     const sourcemaps = require('gulp-sourcemaps')
-    const cssnext = require('postcss-cssnext')
-    const precss = require('precss')
     const csswring = require('csswring')
     const plugins = [
-      cssnext({
+      autoprefixer({
         browsers: [
           'last 2 version',
           'ie >= 11',
@@ -18,11 +26,13 @@ module.exports = function (gulp) {
           'Android >= 4.4'
         ]
       }),
-      precss(),
+      cssImport(),
+      cssMixins(),
+      cssVars({ silent: true }),
+      cssNested(),
+      cssFor(),
       csswring()
     ]
-
-    del(config.dest + 'css/*', { force: true })
 
     return gulp.src(config.src + 'css/[!_]*.scss')
       .pipe(sourcemaps.init())

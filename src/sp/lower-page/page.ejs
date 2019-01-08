@@ -1,18 +1,19 @@
 <%
-  var srcSpRoot = './';
+  var srcSpRoot = '../';
 %>
 <!DOCTYPE html>
 <html lang="ja">
 <%- include(srcSpRoot + '../common/include/_meta-head', {
+  title: '下層ページ',
   css: srcSpRoot + 'css/index.css',
   js: srcSpRoot + 'js/script.min.js'
 }); %>
 <body>
   <%- include(srcSpRoot + 'include/_header'); %>
-  <div class="l-main">
-    <div class="common-module is-error">Common module</div>
-    <div class="toppage-item">Contents</div>
-    <a href="lower-page/page.html">Lower page</a>
+  <div class="l-main theme-lower">
+    <div class="common-module">Common module</div>
+    <div class="page-item">Contents</div>
+    <a href="../">Top page</a>
   </div>
   <%- include(srcSpRoot + 'include/_footer'); %>
 </body>

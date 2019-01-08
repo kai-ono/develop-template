@@ -5,7 +5,7 @@ module.exports = function (gulp) {
     const eslint = require('gulp-eslint')
     const plumber = require('gulp-plumber')
 
-    gulp.src(config.srcPc + 'js/**/*.js')
+    gulp.src(config.src + 'js/**/*')
       .pipe(plumber())
       .pipe(eslint({
         useEslintrc: true
@@ -16,26 +16,31 @@ module.exports = function (gulp) {
 
   gulp.task('cleanjs', function () {
     const del = require('del')
-    return del(config.destPc + 'js/*', { force: true })
+    const cleanDest = (config.isSp) ? config.dest + 'js/*' : [config.dest + 'js/*', '!' + config.destSp + 'js/*']
+    return del(cleanDest, { force: true })
   })
 
   gulp.task('js', [ 'cleanjs', 'eslint' ], function () {
     const babel = require('gulp-babel')
     const rename = require('gulp-rename')
-    const uglify = require('gulp-uglify')
+    const minify = require('gulp-babel-minify')
 
-    gulp.src('src/js/*.js')
+    gulp.src(config.src + 'js/*')
       .pipe(babel({
         'presets': [ 'es2015' ],
         'plugins': [ 'transform-es2015-modules-umd' ],
         'comments': false
       }))
-      .pipe(gulp.dest('dest/js/'))
+      .pipe(gulp.dest(config.dest + 'js'))
       .pipe(rename({
         suffix: '.min'
       }))
-      .pipe(uglify())
-      .pipe(gulp.dest('dest/js/'))
+      .pipe(minify({
+        mangle: {
+          keepClassName: true
+        }
+      }))
+      .pipe(gulp.dest(config.dest + 'js'))
   })
 
   gulp.task('lib', function () {
@@ -43,7 +48,7 @@ module.exports = function (gulp) {
 
     del(config.dest + 'lib/**/*', { force: true })
 
-    return gulp.src(config.srcPc + 'lib/**/*')
-      .pipe(gulp.dest(config.destPc + 'lib/'))
+    return gulp.src(config.src + 'lib/**/*')
+      .pipe(gulp.dest(config.dest + 'lib/'))
   })
 }
