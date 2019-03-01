@@ -1,18 +1,24 @@
 # develop-template
 
+## プレビュー
+
 ## 概要
 * CSS設計はSMACCSを採用
 * srcのファイルをdestにコンパイル
 * htmlはejsで管理
   * ルート直下のincludeフォルダに共通パーツを格納
+* ```console.log```はデバッグ時に残ってしまうことが多いので、eslintのエラールールとして追加
+* classをHTML側でインスタンス化している場合、eslintのno-unused-varsに引っかかってしまうので、```// eslint-disable-next-line```を使ってeslintのチェックから除外する
 
 ## サポート環境
+```package.json```の```browserslist```に定義。
 ### PC
- * IE11
- * Edge最新
- * Firefox最新
- * Chrome最新
- * Safari最新
+ * 以下の直近2バージョン
+   * Edge最新
+   * Firefox最新
+   * Chrome最新
+   * Safari最新
+ * IE11以上
 ### SP
  * iOS8以上
  * Android4.4以上
@@ -57,7 +63,4 @@ npm run start_[pc/sp]
 
 # destをルートとするローカルサーバを起動する
 npm run server
-
-# 全てのJSファイルに対して整形を実行する
-npm run fix
 ```

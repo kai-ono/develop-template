@@ -1,4 +1,5 @@
 <%
+  var rootPath = (typeof rootPath !== 'undefined') ? rootPath : '' ;
   var resultTitle = (typeof title !== 'undefined') ? title + ' - ' : '' ;
   var resultCss = (typeof css !== 'undefined') ? '<link rel="stylesheet" type="text/css" href="' + css + '">' : '' ;
   var resultJs = (typeof js !== 'undefined') ? '<script type="text/javascript" src="' + js + '"></script>' : '' ;
@@ -23,8 +24,7 @@
 <meta name="twitter:title" content="<%= siteTitle %>">
 <meta name="twitter:description" content="<%= description %>">
 <meta name="twitter:image" content="<%= ogImg %>">
-<link rel="shortcut icon" href="/img/favicon.ico">
+<link rel="shortcut icon" href="<%= rootPath %>img/favicon.ico">
 <%- resultCss %>
-<script type="text/javascript" src="/js/ua-switch.js"></script>
 <%- resultJs %>
 <%- include('_analytics', {ga: true}); %>

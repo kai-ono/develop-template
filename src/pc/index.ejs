@@ -1,5 +1,5 @@
 <%
-  var srcPcRoot = './';
+  var srcPcRoot = '';
 %>
 <!DOCTYPE html>
 <html lang="ja">
@@ -14,6 +14,12 @@
     <div class="toppage-item">Contents</div>
     <a href="lower-page/page.html">Lower page</a>
   </div>
+  <script type="text/javascript">
+    var sample = new Sample({
+      json: 'test.json'
+    });
+    sample.getJson();
+  </script>
   <%- include(srcPcRoot + 'include/_footer'); %>
 </body>
 </html>

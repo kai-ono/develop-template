@@ -21,16 +21,24 @@ module.exports = function (gulp) {
   })
 
   gulp.task('js', [ 'cleanjs', 'eslint' ], function () {
-    const babel = require('gulp-babel')
     const rename = require('gulp-rename')
     const minify = require('gulp-babel-minify')
+    const browserify = require('browserify')
+    const source = require('vinyl-source-stream')
+    const buffer = require('vinyl-buffer')
 
-    gulp.src(config.src + 'js/*')
-      .pipe(babel({
-        'presets': [ 'es2015' ],
-        'plugins': [ 'transform-es2015-modules-umd' ],
+    browserify(config.src + 'js/script.js')
+      .transform('babelify', {
+        presets: [
+          ['@babel/preset-env', {
+            'useBuiltIns': 'usage'
+          }]
+        ],
         'comments': false
-      }))
+      })
+      .bundle()
+      .pipe(source('script.js'))
+      .pipe(buffer())
       .pipe(gulp.dest(config.dest + 'js'))
       .pipe(rename({
         suffix: '.min'

@@ -18,14 +18,7 @@ module.exports = function (gulp) {
     const sourcemaps = require('gulp-sourcemaps')
     const csswring = require('csswring')
     const plugins = [
-      autoprefixer({
-        browsers: [
-          'last 2 version',
-          'ie >= 11',
-          'iOS >= 8',
-          'Android >= 4.4'
-        ]
-      }),
+      autoprefixer(),
       cssImport(),
       cssMixins(),
       cssVars({ silent: true }),
