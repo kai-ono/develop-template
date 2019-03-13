@@ -1,30 +1,39 @@
 <%
-  var rootPath = (typeof rootPath !== 'undefined') ? rootPath : '' ;
-  var resultTitle = (typeof title !== 'undefined') ? title + ' - ' : '' ;
-  var resultCss = (typeof css !== 'undefined') ? '<link rel="stylesheet" type="text/css" href="' + css + '">' : '' ;
-  var resultJs = (typeof js !== 'undefined') ? '<script type="text/javascript" src="' + js + '"></script>' : '' ;
-  var siteUrl = "https://example.com/";
-  var siteTitle = "Site Title";
-  var keywords = "keywords, sample, test";
-  var description = "This site is example.";
-  var ogImg = siteUrl + "img/ogp.jpg";
+  var config = (typeof config !== 'undefined') ? config : {};
+  var issp = (typeof issp !== 'undefined') ? issp : false;
+  var dest = {
+    root: config.destRoot.pc,
+    device: (issp) ? config.destRoot.sp : config.destRoot.pc
+  }
+  var meta = {
+    title: (typeof title !== 'undefined') ? title + ' - ' : '',
+    css: (typeof css !== 'undefined') ? '<link rel="stylesheet" type="text/css" href="' + dest.device + css + '">' : '',
+    js: (typeof js !== 'undefined') ? '<script type="text/javascript" src="' + dest.device + js + '"></script>' : ''
+  }
+  var site = {
+    url: 'https://example.com/',
+    title: 'Site Title',
+    keywords: 'keywords, sample, test',
+    description: 'This site is example.',
+  }
+  var ogimage = site.url + 'img/ogp.jpg';
 %>
 <%- include('_analytics', {tagMng: { head: true }}); %>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title><%= resultTitle %><%= siteTitle %></title>
-<meta name="keywords" content="<%= keywords %>">
-<meta name="description" content="<%= description %>">
-<meta property="og:title" content="<%= siteTitle %>">
-<meta property="og:description" content="<%= description %>">
+<title><%= meta.title %><%= site.title %></title>
+<meta name="keywords" content="<%= site.keywords %>">
+<meta name="description" content="<%= site.description %>">
+<meta property="og:title" content="<%= site.title %>">
+<meta property="og:description" content="<%= site.description %>">
 <meta property="og:type" content="website">
-<meta property="og:url" content="<%= siteUrl %>">
-<meta property="og:image" content="<%= ogImg %>">
+<meta property="og:url" content="<%= site.url %>">
+<meta property="og:image" content="<%= ogimage %>">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="<%= siteTitle %>">
-<meta name="twitter:description" content="<%= description %>">
-<meta name="twitter:image" content="<%= ogImg %>">
-<link rel="shortcut icon" href="<%= rootPath %>img/favicon.ico">
-<%- resultCss %>
-<%- resultJs %>
+<meta name="twitter:title" content="<%= site.title %>">
+<meta name="twitter:description" content="<%= site.description %>">
+<meta name="twitter:image" content="<%= ogimage %>">
+<link rel="shortcut icon" href="<%= dest.root %>img/favicon.ico">
+<%- meta.css %>
+<%- meta.js %>
 <%- include('_analytics', {ga: true}); %>

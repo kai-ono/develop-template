@@ -1,19 +1,24 @@
 <%
-  var srcSpRoot = './';
+  var srcRoot = '../';
+  var destRoot = '../';
+  include(srcRoot + 'common/include/_config');
+  var config = getConfig(srcRoot, destRoot);
 %>
 <!DOCTYPE html>
 <html lang="ja">
-<%- include(srcSpRoot + '../common/include/_meta-head', {
-  css: srcSpRoot + 'css/index.css',
-  js: srcSpRoot + 'js/script.min.js'
+<%- include(srcRoot + 'common/include/_meta-head', {
+  config: config,
+  issp: true,
+  css: 'css/index.css',
+  js: 'js/script.js'
 }); %>
 <body>
-  <%- include(srcSpRoot + 'include/_header'); %>
+  <%- include(config.srcRoot.sp + 'include/_header'); %>
   <div class="l-main">
     <div class="common-module is-error">Common module</div>
     <div class="toppage-item">Contents</div>
     <a href="lower-page/page.html">Lower page</a>
   </div>
-  <%- include(srcSpRoot + 'include/_footer'); %>
+  <%- include(config.srcRoot.sp + 'include/_footer'); %>
 </body>
 </html>

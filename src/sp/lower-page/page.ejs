@@ -1,20 +1,25 @@
 <%
-  var srcSpRoot = '../';
+  var srcRoot = '../../';
+  var destRoot = '../../';
+  include(srcRoot + 'common/include/_config');
+  var config = getConfig(srcRoot, destRoot);
 %>
 <!DOCTYPE html>
 <html lang="ja">
-<%- include(srcSpRoot + '../common/include/_meta-head', {
+<%- include(srcRoot + 'common/include/_meta-head', {
+  config: config,
+  issp: true,
   title: '下層ページ',
-  css: srcSpRoot + 'css/index.css',
-  js: srcSpRoot + 'js/script.min.js'
+  css: 'css/index.css',
+  js: 'js/script.js'
 }); %>
 <body>
-  <%- include(srcSpRoot + 'include/_header'); %>
+  <%- include(config.srcRoot.sp + 'include/_header'); %>
   <div class="l-main theme-lower">
     <div class="common-module">Common module</div>
     <div class="page-item">Contents</div>
     <a href="../">Top page</a>
   </div>
-  <%- include(srcSpRoot + 'include/_footer'); %>
+  <%- include(config.srcRoot.sp + 'include/_footer'); %>
 </body>
 </html>

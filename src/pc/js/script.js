@@ -1,10 +1,7 @@
 'use strict'
 
-/**
- * IE11用のFetchのPolyfill
- * 適宜削除してください
- */
-import 'whatwg-fetch'
+// 別ファイルから読み込めるので、複雑なクラスはファイルを分けると見通しが良くなります。
+require('./ua-switch.js')
 
 // 別ファイルでクラスを実行する場合はLintに引っかかるので、その場合はclassの行だけLintを無効にする
 // eslint-disable-next-line
@@ -29,16 +26,6 @@ class Sample {
       })
       .then((text) => console.log(text.key))
       .catch((error) => console.log(error))
-  }
-
-  /**
-  * Promiseの@babel/polyfillを有効にするための記述。
-  * whatwg-fetchにはPromiseのpolyfillも必要だが、
-  * 直接Promiseの記述が無いと有効にならない。
-  * 実行は不要。
-  */
-  enablePromisePolyfill () {
-    Promise.resolve()
   }
 }
 

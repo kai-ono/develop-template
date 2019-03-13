@@ -1,0 +1,15 @@
+<% getConfig = function (_srcRoot = '', _destRoot = '') {
+  /**
+    * srcRootとdestRootは必ずしも同じではない前提なので、
+    * あえてsrcRootを基にdestRootは割り出していません。
+    */
+  this.srcRoot = {
+    pc: _srcRoot + 'pc/',
+    sp: _srcRoot + 'sp/'
+  }
+  this.destRoot = {
+    pc: _destRoot,
+    sp: _destRoot.replace('../', '')
+  }
+  return this;
+} %>

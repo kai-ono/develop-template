@@ -1,14 +1,18 @@
 <%
-  var srcPcRoot = '';
+  var srcRoot = '../';
+  var destRoot = '';
+  include(srcRoot + 'common/include/_config');
+  var config = getConfig(srcRoot, destRoot);
 %>
 <!DOCTYPE html>
 <html lang="ja">
-<%- include(srcPcRoot + '../common/include/_meta-head', {
-  css: srcPcRoot + 'css/index.css',
-  js: srcPcRoot + 'js/script.min.js'
+<%- include(srcRoot + 'common/include/_meta-head', {
+  config: config,
+  css: 'css/index.css',
+  js: 'js/script.js'
 }); %>
 <body>
-  <%- include(srcPcRoot + 'include/_header'); %>
+  <%- include(config.srcRoot.pc + 'include/_header'); %>
   <div class="l-main">
     <div class="common-module is-error">Common module</div>
     <div class="toppage-item">Contents</div>
@@ -20,6 +24,6 @@
     });
     sample.getJson();
   </script>
-  <%- include(srcPcRoot + 'include/_footer'); %>
+  <%- include(config.srcRoot.pc + 'include/_footer'); %>
 </body>
 </html>

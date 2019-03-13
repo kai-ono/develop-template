@@ -21,31 +21,34 @@ module.exports = function (gulp) {
   })
 
   gulp.task('js', [ 'cleanjs', 'eslint' ], function () {
-    const rename = require('gulp-rename')
-    const minify = require('gulp-babel-minify')
-    const browserify = require('browserify')
-    const source = require('vinyl-source-stream')
-    const buffer = require('vinyl-buffer')
+    const webpackStream = require('webpack-stream')
+    const mode = (config.env.dev) ? 'development' : 'production'
 
-    browserify(config.src + 'js/script.js')
-      .transform('babelify', {
-        presets: [
-          ['@babel/preset-env', {
-            'useBuiltIns': 'usage'
+    return gulp.src(config.src + 'js/script.js')
+      .pipe(webpackStream({
+        mode: mode,
+        /**
+         * @babel/polyfillは重いのでfetchとpromiseだけ追加。
+         * preset-envのuseBuiltInsを'usage'で使う場合、コード内にPromiseが存在しないとpolyfillが追加されないため、
+         * fetchの場合は別途promiseのpolyfillを読み込む必要がある。
+         * またusageの動作には不安があるため一旦使用を保留。
+         */
+        entry: ['core-js/fn/promise', 'whatwg-fetch', config.src + 'js/script.js'],
+        output: {
+          filename: 'script.js'
+        },
+        module: {
+          rules: [{
+            test: /\.js$/,
+            exclude: /node_modules/,
+            use: {
+              loader: 'babel-loader',
+              options: {
+                presets: ['@babel/preset-env'],
+                plugins: ['@babel/plugin-transform-modules-umd']
+              }
+            }
           }]
-        ],
-        'comments': false
-      })
-      .bundle()
-      .pipe(source('script.js'))
-      .pipe(buffer())
-      .pipe(gulp.dest(config.dest + 'js'))
-      .pipe(rename({
-        suffix: '.min'
-      }))
-      .pipe(minify({
-        mangle: {
-          keepClassName: true
         }
       }))
       .pipe(gulp.dest(config.dest + 'js'))
