@@ -1,7 +1,5 @@
 # develop-template
 
-## プレビュー
-
 ## 概要
 * CSS設計はSMACCSを採用
 * srcのファイルをdestにコンパイル
@@ -12,6 +10,7 @@
 
 ## サポート環境
 ```package.json```の```browserslist```に定義。
+
 ### PC
  * 以下の直近2バージョン
    * Edge最新
@@ -22,6 +21,13 @@
 ### SP
  * iOS8以上
  * Android4.4以上
+
+## Polyfill
+IE11用に```fetch```と```promise```のpolyfillのみ対応。
+足りなければ適宜追加します。
+### @babel/polyfillについて
+  * ```useBuildIns: 'usage'```は動作が不安定なため不採用(2019/3/13現在)
+  * ```@babel/polyfill```全てを```webpack```するのはファイルサイズが大きくなりすぎるため不採用
 
 ## ディレクトリ構成の定義
 gulpタスク、EJSそれぞれのconfigファイルに定義しています。  

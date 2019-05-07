@@ -43,7 +43,6 @@
     "babel-eslint": "10.0.1",
     "babel-loader": "8.0.5",
     "browserslist": "4.4.2",
-    "csswring": "6.0.1",
     "del": "3.0.0",
     "eslint-config-standard": "11.0.0",
     "eslint-plugin-import": "2.11.0",
@@ -59,6 +58,7 @@
     "gulp-sourcemaps": "2.6.1",
     "gulp-webserver": "0.9.1",
     "postcss": "6.0.23",
+    "postcss-clean": "1.1.0",
     "postcss-extend": "1.0.5",
     "postcss-for": "2.1.1",
     "postcss-mixins": "6.2.0",
@@ -70,7 +70,7 @@
     "webpack-stream": "5.2.1"
   },
   "dependencies": {
-    "@babel/polyfill": "^7.2.5",
+    "@babel/polyfill": "7.2.5",
     "whatwg-fetch": "2.0.4"
   }
 }

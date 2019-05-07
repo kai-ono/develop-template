@@ -16,7 +16,7 @@ module.exports = function (gulp) {
     const cssMixins = require('postcss-mixins')
     const autoprefixer = require('autoprefixer')
     const sourcemaps = require('gulp-sourcemaps')
-    const csswring = require('csswring')
+    const cssclean = require('postcss-clean')
     const plugins = [
       autoprefixer(),
       cssImport(),
@@ -24,7 +24,7 @@ module.exports = function (gulp) {
       cssVars({ silent: true }),
       cssNested(),
       cssFor(),
-      csswring()
+      cssclean()
     ]
 
     return gulp.src(config.src + 'css/[!_]*.scss')
