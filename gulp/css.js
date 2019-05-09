@@ -14,6 +14,7 @@ module.exports = function (gulp) {
     const cssVars = require('postcss-simple-vars')
     const cssNested = require('postcss-nested')
     const cssMixins = require('postcss-mixins')
+    const cssExtend = require('postcss-extend')
     const autoprefixer = require('autoprefixer')
     const sourcemaps = require('gulp-sourcemaps')
     const cssclean = require('postcss-clean')
@@ -24,6 +25,7 @@ module.exports = function (gulp) {
       cssVars({ silent: true }),
       cssNested(),
       cssFor(),
+      cssExtend(),
       cssclean()
     ]
 
