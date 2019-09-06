@@ -10,12 +10,12 @@ class Sample {
    * コンストラクタ
    * @param {Object} args object型の引数。
    */
-  constructor (args) {
+  constructor(args) {
     this.args = (typeof args !== 'undefined') ? args : {}
     this.jsonPath = (typeof this.args.json !== 'undefined') ? this.args.json : ''
   }
 
-  getJson () {
+  getJson() {
     fetch(this.jsonPath)
       .then((res) => {
         if (res.ok) {
@@ -24,7 +24,9 @@ class Sample {
           throw new Error()
         }
       })
+      // eslint-disable-next-line no-console
       .then((text) => console.log(text.key))
+      // eslint-disable-next-line no-console
       .catch((error) => console.log(error))
   }
 }

@@ -14,6 +14,7 @@ module.exports = (function () {
   this.isSp = (this.env.sp)
   this.src = (this.isSp) ? srcSp : srcPc
   this.dest = (this.isSp) ? destSp : destPc
+  this.destSp = destSp
 
   return this
 })()

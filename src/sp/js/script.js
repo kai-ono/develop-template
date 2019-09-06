@@ -5,11 +5,12 @@ class Sample {
      * コンストラクタ
      * @param {Object} args object型の引数。
      */
-  constructor (args) {
+  constructor(args) {
     this.Sample()
   }
 
-  Sample () {
+  Sample() {
+    // eslint-disable-next-line no-console
     console.log('sample')
   }
 }

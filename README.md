@@ -1,5 +1,3 @@
-# develop-template
-
 ## 概要
 * CSS設計はSMACCSを採用
 * srcのファイルをdestにコンパイル
